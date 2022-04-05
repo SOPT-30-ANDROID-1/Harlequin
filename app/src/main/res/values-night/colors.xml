@@ -36,28 +36,17 @@
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnError">#FFFFFF</color>
 
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorBackground">#000000</color>
+    <color name="colorSurface">#222222</color>
 
-    <color name="colorOnBackground">#101010</color>
-    <color name="colorOnBackground70">#B3101010</color>
-    <color name="colorOnBackground50">#80101010</color>
-    <color name="colorOnBackground30">#4D101010</color>
-    <color name="colorOnBackground15">#26101010</color>
-    <color name="colorOnSurface">#101010</color>
-    <color name="colorOnSurface70">#B3101010</color>
-    <color name="colorOnSurface50">#80101010</color>
-    <color name="colorOnSurface30">#4D101010</color>
-    <color name="colorOnSurface15">#26101010</color>
-
-    <!--NON THEMED COLORS-->
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorTransparent">#00000000</color>
-    <color name="colorDrawerScrim">#20666666</color>
-
-    <color name="colorFacebookBackground">#4267B2</color>
-    <color name="colorFacebookForeground">#ffffff</color>
-    <color name="colorGoogleBackground">#ffffff</color>
-    <color name="colorGoogleForeground">#222222</color>
+    <color name="colorOnBackground">#EAEAEA</color>
+    <color name="colorOnBackground70">#b3EAEAEA</color>
+    <color name="colorOnBackground50">#80EAEAEA</color>
+    <color name="colorOnBackground30">#4DEAEAEA</color>
+    <color name="colorOnBackground15">#26EAEAEA</color>
+    <color name="colorOnSurface">#EAEAEA</color>
+    <color name="colorOnSurface70">#B3EAEAEA</color>
+    <color name="colorOnSurface50">#80EAEAEA</color>
+    <color name="colorOnSurface30">#4DEAEAEA</color>
+    <color name="colorOnSurface15">#26EAEAEA</color>
 </resources>

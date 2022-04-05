@@ -1,4 +1,4 @@
-package happy.mjstudio.andsample.util
+package happy.mjstudio.harlequin.util
 
 import android.view.View
 import androidx.databinding.BindingAdapter

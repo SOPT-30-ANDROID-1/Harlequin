@@ -1,4 +1,4 @@
-package happy.mjstudio.andsample
+package happy.mjstudio.harlequin
 
 import org.junit.Test
 

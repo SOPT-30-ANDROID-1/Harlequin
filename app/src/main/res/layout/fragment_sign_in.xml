@@ -123,6 +123,32 @@
             app:layout_constraintTop_toBottomOf="@id/signIn" />
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/math_layout"
+            style="@style/Widget.TextInput"
+            text_input_error="@{vm.nError}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/side_padding"
+            android:layout_marginTop="20dp"
+            android:hint="소인수분해 계산기"
+            app:layout_constraintTop_toBottomOf="@id/signUp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:text="@={vm.n}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.go()}"
+            android:text="소인수분해 하기"
+            app:layout_constraintLeft_toLeftOf="@id/math_layout"
+            app:layout_constraintTop_toBottomOf="@id/math_layout" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/theme_fab"
             android:layout_width="wrap_content"

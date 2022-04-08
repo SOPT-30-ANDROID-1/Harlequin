@@ -1,11 +1,15 @@
 package happy.mjstudio.harlequin.presentation.auth
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import happy.mjstudio.harlequin.auth.validator.AuthFormValidator
 import happy.mjstudio.harlequin.util.NativeLib
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,6 +43,14 @@ class AuthViewModel @Inject constructor(
     val n = MutableStateFlow("2")
     private val _nError = MutableStateFlow("")
     val nError: StateFlow<String> = _nError
+
+    init {
+        viewModelScope.launch(Dispatchers.Default) {
+            n.collect {
+                go()
+            }
+        }
+    }
 
     fun go() {
         _nError.value = ""

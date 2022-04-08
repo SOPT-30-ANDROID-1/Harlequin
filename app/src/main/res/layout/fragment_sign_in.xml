@@ -141,14 +141,6 @@
                 android:text="@={vm.n}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.go()}"
-            android:text="소인수분해 하기"
-            app:layout_constraintLeft_toLeftOf="@id/math_layout"
-            app:layout_constraintTop_toBottomOf="@id/math_layout" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/theme_fab"
             android:layout_width="wrap_content"

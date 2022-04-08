@@ -481,7 +481,7 @@ struct _miller {
 
 struct _pollard : public _miller, _random {
     void fn(ll n, vector<ll> &ret) {
-        LOGE("hello %lld", n);
+//        LOGE("hello %lld", n);
         if (n == 1) return;
         if (!(n & 1)) {
             ret.pb(2);

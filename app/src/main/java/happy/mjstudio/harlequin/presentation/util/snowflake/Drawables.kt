@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.ui.util.snowflake
+package happy.mjstudio.harlequin.presentation.util.snowflake
 
 /*
  * Copyright (C) 2016 JetRadar

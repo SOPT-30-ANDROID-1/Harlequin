@@ -4,39 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
 
-    <happy.mjstudio.harlequin.ui.util.snowflake.SnowfallView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:snowflakeAlphaMax="255"
-        app:snowflakeAlphaMin="150"
-        app:snowflakeAngleMax="2"
-        app:snowflakeImage="@drawable/logo_24"
-        app:snowflakeSizeMax="150dp"
-        app:snowflakeSizeMin="100dp"
-        app:snowflakeSpeedMax="10"
-        app:snowflakeSpeedMin="3"
-        app:snowflakesAlreadyFalling="false"
-        app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="10"
-        app:snowflakesSameDirection="false"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="99dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        style="@style/Widget.MyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/auth" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

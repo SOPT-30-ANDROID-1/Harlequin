@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.MyButton" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/colorPrimaryDark</item>
+    <style name="Widget.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/text_input_selector</item>
     </style>
 </resources>

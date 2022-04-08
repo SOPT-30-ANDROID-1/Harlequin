@@ -9,4 +9,5 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     val id = MutableStateFlow("")
+    val pw = MutableStateFlow("")
 }

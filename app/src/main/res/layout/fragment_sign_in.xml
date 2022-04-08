@@ -65,6 +65,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_layout"
             style="@style/Widget.TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,6 +79,44 @@
                 android:layout_height="match_parent"
                 android:text="@={vm.id}" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pw_layout"
+            style="@style/Widget.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/side_padding"
+            android:layout_marginTop="24dp"
+            android:hint="PW"
+            app:layout_constraintTop_toBottomOf="@id/id_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:text="@={vm.pw}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signIn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Sign In"
+            app:layout_constraintRight_toRightOf="@id/pw_layout"
+            app:layout_constraintTop_toBottomOf="@id/pw_layout" />
+
+        <Button
+            android:id="@+id/signUp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Do you need a new account?"
+            android:textColor="@color/colorOnBackground"
+            app:layout_constraintRight_toRightOf="@id/pw_layout"
+            app:layout_constraintTop_toBottomOf="@id/signIn" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

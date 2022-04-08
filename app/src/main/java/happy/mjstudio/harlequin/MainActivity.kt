@@ -2,6 +2,7 @@ package happy.mjstudio.harlequin
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,9 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
-        binding.btn setOnDebounceClickListener {
-            themeSwitcher.switchMode()
-            Toast.makeText(this, "GO TO HELL", Toast.LENGTH_LONG).show()
-        }
+        val l = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+
+        //        binding.btn setOnDebounceClickListener {
+        //            themeSwitcher.switchMode()
+        //            Toast.makeText(this, "GO TO HELL", Toast.LENGTH_LONG).show()
+        //        }
     }
 }

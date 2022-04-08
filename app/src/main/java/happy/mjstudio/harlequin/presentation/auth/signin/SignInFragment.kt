@@ -10,23 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.ViewCompat
-import androidx.core.view.updatePadding
 import androidx.core.view.updatePaddingRelative
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
-import happy.mjstudio.harlequin.presentation.util.PixelRatio
 import happy.mjstudio.harlequin.presentation.util.getDimen
 import happy.mjstudio.harlequin.util.setOnDebounceClickListener
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlin.random.Random
 
 @AndroidEntryPoint
-class SignInFragment(private val pixelRatio: PixelRatio, private val themeSwitcher: ThemeSwitcher) : Fragment() {
+class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
     private var binding: FragmentSignInBinding by AutoClearedValue()
     private val viewModel by hiltNavGraphViewModels<AuthViewModel>(R.id.nav_graph_auth)
 
@@ -40,11 +40,12 @@ class SignInFragment(private val pixelRatio: PixelRatio, private val themeSwitch
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
-        initLogo()
+        thisFunctionIsSoTrash()
         binding.themeFab setOnDebounceClickListener { themeSwitcher.switchMode() }
+        initButtonListeners()
     }
 
-    private fun initLogo() {
+    private fun thisFunctionIsSoTrash() {
         binding.logoContainer.updatePaddingRelative(
             getDimen(R.dimen.side_padding), 0, getDimen(R.dimen.side_padding), 0
         )
@@ -82,6 +83,20 @@ class SignInFragment(private val pixelRatio: PixelRatio, private val themeSwitch
                 binding.logoContainer.addView(this)
                 binding.logoFlow.addView(this)
             }
+        }
+    }
+
+    private fun initButtonListeners() {
+        binding.signIn setOnDebounceClickListener {
+            viewModel.signIn()
+        }
+        binding.signUp setOnDebounceClickListener {
+            findNavController().navigate(
+                R.id.action_signInFragment_to_signUpFragment,
+                null,
+                null,
+                FragmentNavigatorExtras(binding.idLayout to "id_layout", binding.pwLayout to "pw_layout")
+            )
         }
     }
 }

@@ -67,11 +67,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_layout"
             style="@style/Widget.TextInput"
+            text_input_error="@{vm.signInIdError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"
             android:layout_marginTop="24dp"
             android:hint="ID"
+            android:transitionName="id_layout"
             app:layout_constraintTop_toBottomOf="@id/logo_container">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -83,11 +85,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pw_layout"
             style="@style/Widget.TextInput"
+            text_input_error="@{vm.signInPwError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:hint="PW"
+            android:transitionName="pw_layout"
             app:layout_constraintTop_toBottomOf="@id/id_layout">
 
             <com.google.android.material.textfield.TextInputEditText

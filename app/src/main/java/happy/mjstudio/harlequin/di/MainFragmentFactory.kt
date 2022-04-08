@@ -23,7 +23,7 @@ class MainFragmentFactory(activity: Activity) : FragmentFactory() {
 
     override fun instantiate(classLoader: ClassLoader, className: String) =
         when (loadFragmentClass(classLoader, className)) {
-            SignInFragment::class.java -> SignInFragment(entryPoint.pixelRatio(), entryPoint.themeSwitcher())
+            SignInFragment::class.java -> SignInFragment(entryPoint.themeSwitcher())
             else -> super.instantiate(classLoader, className)
         }
 }

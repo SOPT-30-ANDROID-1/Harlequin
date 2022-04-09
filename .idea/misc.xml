@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable/rain.xml" value="0.322" />
         <entry key="app/src/main/res/drawable/splash_animated_vector.xml" value="0.228" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_master.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_master.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.4083333333333333" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.5" />
       </map>

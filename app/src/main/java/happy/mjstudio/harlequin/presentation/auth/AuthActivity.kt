@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
-import happy.mjstudio.harlequin.databinding.ActivityMainBinding
+import happy.mjstudio.harlequin.databinding.ActivityAuthBinding
 import happy.mjstudio.harlequin.di.MainFragmentFactory
 import happy.mjstudio.harlequin.presentation.master.MasterActivity
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityAuthBinding
 
     @Inject
     lateinit var themeSwitcher: ThemeSwitcher
@@ -25,7 +25,7 @@ class AuthActivity : AppCompatActivity() {
         installSplashScreen()
         supportFragmentManager.fragmentFactory = MainFragmentFactory(this)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        binding = ActivityAuthBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         observeAuthSuccess()
     }

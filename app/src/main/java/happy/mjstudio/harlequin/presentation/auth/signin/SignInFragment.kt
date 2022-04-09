@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePaddingRelative
@@ -29,6 +28,8 @@ import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.presentation.util.ext.getDimen
 import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
+import happy.mjstudio.harlequin.presentation.util.ext.showToast
+import happy.mjstudio.harlequin.util.debug
 import happy.mjstudio.harlequin.util.onDebounceClick
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
@@ -162,9 +163,7 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
             )
         }
         repeatCoroutineWhenStarted {
-            authViewModel.unknownExceptionEvent.collect {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
+            authViewModel.unknownExceptionEvent.collect(::showToast)
         }
     }
 

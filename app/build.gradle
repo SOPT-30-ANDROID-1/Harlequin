@@ -65,7 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:2.4.1"
 
     implementation "com.airbnb.android:lottie:5.0.3"
-
+    implementation "com.thedeanda:lorem:2.1"
 }
 
 dependencies {

@@ -40,7 +40,6 @@ class AuthViewModel @Inject constructor(
     }
 
     val unknownExceptionEvent = EventSharedFlow("")
-
     fun signIn() {
         clearErrors()
 

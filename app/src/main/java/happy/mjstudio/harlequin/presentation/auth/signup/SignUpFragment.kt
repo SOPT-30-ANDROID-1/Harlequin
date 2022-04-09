@@ -13,6 +13,7 @@ import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignUpBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
+import happy.mjstudio.harlequin.util.onDebounceClick
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
@@ -35,6 +36,11 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
+
+        binding.signUp onDebounceClick {
+            viewModel.signUp()
+        }
+        viewModel.clearErrors()
     }
 
 }

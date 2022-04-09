@@ -2,7 +2,6 @@ package happy.mjstudio.harlequin.presentation.auth.signin
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -10,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePaddingRelative
@@ -160,6 +160,11 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
                 null,
                 FragmentNavigatorExtras(binding.idLayout to "id_layout", binding.pwLayout to "pw_layout")
             )
+        }
+        repeatCoroutineWhenStarted {
+            authViewModel.unknownExceptionEvent.collect {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

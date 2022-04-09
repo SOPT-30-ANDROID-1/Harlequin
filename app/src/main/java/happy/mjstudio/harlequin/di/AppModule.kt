@@ -7,13 +7,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
-import happy.mjstudio.harlequin.auth.validator.IdValidator
-import happy.mjstudio.harlequin.auth.validator.NameValidator
-import happy.mjstudio.harlequin.auth.validator.PwValidator
-import happy.mjstudio.harlequin.util.StringValidator
+import happy.mjstudio.harlequin.auth.provider.AuthProvider
+import happy.mjstudio.harlequin.auth.provider.AuthProviderImpl
 import happy.mjstudio.harlequin.util.localstorage.LocalStorage
 import happy.mjstudio.harlequin.util.localstorage.SharedPreferencesLocalStorage
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
@@ -44,9 +41,15 @@ object AppModule {
 @InstallIn(SingletonComponent::class)
 abstract class AppBindModule {
     @Binds
+    @Singleton
     abstract fun bindLocalStorage(storage: SharedPreferencesLocalStorage): LocalStorage
 
     @Binds
+    @Singleton
     abstract fun bindThemeSwitcher(switcher: ThemeSwitcherAndroid): ThemeSwitcher
+
+    @Binds
+    @Singleton
+    abstract fun bindAuthProvider(provider: AuthProviderImpl): AuthProvider
 }
 

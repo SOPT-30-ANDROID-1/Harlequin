@@ -1,16 +1,21 @@
-package happy.mjstudio.harlequin.main
+package happy.mjstudio.harlequin.presentation.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
+import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.databinding.ActivityMainBinding
 import happy.mjstudio.harlequin.di.MainFragmentFactory
+import happy.mjstudio.harlequin.presentation.master.MasterActivity
+import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -21,9 +26,22 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.fragmentFactory = MainFragmentFactory(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+
+        observeAuthSuccess()
     }
 
-    private fun decideFirstNavGraph() {
+    @Inject
+    lateinit var authProvider: AuthProvider
+    private fun observeAuthSuccess() {
+        repeatCoroutineWhenStarted {
+            authProvider.isSignIn.collect {
+                if (it) navigateMaster()
+            }
+        }
+    }
 
+    private fun navigateMaster() {
+        startActivity(Intent(this, MasterActivity::class.java))
+        finish()
     }
 }

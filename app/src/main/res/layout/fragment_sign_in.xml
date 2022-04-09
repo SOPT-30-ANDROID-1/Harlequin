@@ -72,7 +72,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_layout"
             style="@style/Widget.TextInput"
-            text_input_error="@{authViewModel.signInIdError}"
+            text_input_error="@{authViewModel.idError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"
@@ -90,7 +90,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pw_layout"
             style="@style/Widget.TextInput"
-            text_input_error="@{authViewModel.signInPwError}"
+            text_input_error="@{authViewModel.pwError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"

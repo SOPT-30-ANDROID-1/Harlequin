@@ -2,6 +2,7 @@ package happy.mjstudio.harlequin.presentation.auth.signin
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -25,8 +26,9 @@ import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
-import happy.mjstudio.harlequin.presentation.util.getDimen
-import happy.mjstudio.harlequin.presentation.util.repeatCoroutineWhenStarted
+import happy.mjstudio.harlequin.presentation.util.ext.getDimen
+import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
+import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.util.onDebounceClick
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
@@ -94,6 +96,8 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
                     backPressedCallback.isEnabled = true
                 } else {
                     TransitionManager.beginDelayedTransition(binding.container, closeTransformProvider())
+                    hideKeyboard()
+                    binding.mathTextinput.clearFocus()
                 }
             }
         }

@@ -1,6 +1,5 @@
 package happy.mjstudio.harlequin.auth.provider
 
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
 interface AuthProvider {

@@ -66,6 +66,11 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:5.0.3"
     implementation "com.thedeanda:lorem:2.1"
+
+    debugImplementation 'com.facebook.flipper:flipper:0.142.0'
+    debugImplementation 'com.facebook.soloader:soloader:0.10.3'
+    releaseImplementation 'com.facebook.flipper:flipper-noop:0.142.0'
+    debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.142.0'
 }
 
 dependencies {

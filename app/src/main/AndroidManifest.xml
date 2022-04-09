@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting">
         <activity
-            android:windowSoftInputMode="adjustPan"
             android:name=".presentation.master.MasterActivity"
             android:exported="false"
-            android:theme="@style/Theme.App" />
+            android:theme="@style/Theme.App"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.auth.AuthActivity"
             android:exported="true">
@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

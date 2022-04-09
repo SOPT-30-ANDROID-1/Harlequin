@@ -75,6 +75,14 @@
             app:layout_constraintTop_toBottomOf="@id/mbti"
             app:selected="@{true}" />
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> masterViewModel.signOut()}"
+            android:text="Logout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/marquee" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,7 +7,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.auth.provider.AuthProviderImpl

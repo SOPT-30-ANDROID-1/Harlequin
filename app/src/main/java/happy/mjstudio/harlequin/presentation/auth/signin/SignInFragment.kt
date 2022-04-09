@@ -29,7 +29,6 @@ import happy.mjstudio.harlequin.presentation.util.ext.getDimen
 import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.presentation.util.ext.showToast
-import happy.mjstudio.harlequin.util.debug
 import happy.mjstudio.harlequin.util.onDebounceClick
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect

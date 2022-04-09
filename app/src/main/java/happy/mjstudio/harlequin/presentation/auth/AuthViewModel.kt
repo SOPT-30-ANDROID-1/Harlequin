@@ -38,30 +38,4 @@ class AuthViewModel @Inject constructor(
         if (!formValidator.validatePw(id.value) { _signInPwError.value = it }) return
 
     }
-
-    //?
-    val n = MutableStateFlow("2")
-    private val _nError = MutableStateFlow("")
-    val nError: StateFlow<String> = _nError
-
-    init {
-        viewModelScope.launch(Dispatchers.Default) {
-            n.collect {
-                go()
-            }
-        }
-    }
-
-    fun go() {
-        _nError.value = ""
-        val ret = n.value.toLongOrNull()
-
-        if (ret == null || ret !in 1..(Long.MAX_VALUE)) {
-            _nError.value = "2^63-1 이하의 양의 정수를 입력해주세요"
-            return
-        }
-
-        _nError.value = NativeLib.prime_factorize_zirige_fast(ret)
-    }
-
 }

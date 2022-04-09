@@ -9,26 +9,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePaddingRelative
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.presentation.util.getDimen
-import happy.mjstudio.harlequin.util.setOnDebounceClickListener
+import happy.mjstudio.harlequin.presentation.util.repeatCoroutineWhenStarted
+import happy.mjstudio.harlequin.util.onDebounceClick
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.drop
 import kotlin.random.Random
 
 @AndroidEntryPoint
 class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
     private var binding: FragmentSignInBinding by AutoClearedValue()
-    private val viewModel by hiltNavGraphViewModels<AuthViewModel>(R.id.nav_graph_auth)
+    private val authViewModel by hiltNavGraphViewModels<AuthViewModel>(R.id.nav_graph_auth)
+    private val signInViewModel by viewModels<SignInViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         FragmentSignInBinding.inflate(inflater, container, false).let {
@@ -38,11 +47,61 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.vm = viewModel
+        binding.authViewModel = authViewModel
+        binding.signInViewModel = signInViewModel
 
         thisFunctionIsSoTrash()
-        binding.themeFab setOnDebounceClickListener { themeSwitcher.switchMode() }
-        initButtonListeners()
+        initThemeSwitcherBehavior()
+        initMath()
+        initAuthBehaviors()
+    }
+
+    private val backPressedCallback = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+            if (signInViewModel.isMathOpen.value) {
+                signInViewModel.toggleMathOpen()
+            }
+            isEnabled = false
+        }
+    }
+
+    private fun initMath() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
+
+        fun createTransform(startView: View, endView: View) = MaterialContainerTransform().apply {
+            duration = 800L
+            this.startView = startView
+            this.endView = endView
+            addTarget(endView)
+            scrimColor = Color.TRANSPARENT
+            setPathMotion(MaterialArcMotion())
+        }
+
+        val openTransformProvider = {
+            createTransform(binding.mathFab, binding.mathCard)
+        }
+        val closeTransformProvider = {
+            createTransform(binding.mathCard, binding.mathFab)
+        }
+
+        binding.mathCard onDebounceClick { signInViewModel.toggleMathOpen() }
+        binding.mathFab onDebounceClick { signInViewModel.toggleMathOpen() }
+
+        repeatCoroutineWhenStarted {
+            signInViewModel.isMathOpen.drop(1).collect { isMathOpen ->
+                if (isMathOpen) {
+                    TransitionManager.beginDelayedTransition(binding.container, openTransformProvider())
+                    backPressedCallback.isEnabled = true
+                } else {
+                    TransitionManager.beginDelayedTransition(binding.container, closeTransformProvider())
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        backPressedCallback.remove()
     }
 
     private fun thisFunctionIsSoTrash() {
@@ -86,11 +145,11 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
         }
     }
 
-    private fun initButtonListeners() {
-        binding.signIn setOnDebounceClickListener {
-            viewModel.signIn()
-        }
-        binding.signUp setOnDebounceClickListener {
+    private fun initThemeSwitcherBehavior() = binding.themeFab onDebounceClick { themeSwitcher.switchMode() }
+
+    private fun initAuthBehaviors() {
+        binding.signIn onDebounceClick { authViewModel.signIn() }
+        binding.signUp onDebounceClick {
             findNavController().navigate(
                 R.id.action_signInFragment_to_signUpFragment,
                 null,
@@ -99,4 +158,5 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
             )
         }
     }
+
 }

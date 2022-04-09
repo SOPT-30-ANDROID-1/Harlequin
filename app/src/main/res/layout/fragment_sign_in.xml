@@ -7,12 +7,17 @@
     <data>
 
         <variable
-            name="vm"
+            name="authViewModel"
             type="happy.mjstudio.harlequin.presentation.auth.AuthViewModel" />
+
+        <variable
+            name="signInViewModel"
+            type="happy.mjstudio.harlequin.presentation.auth.signin.SignInViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -67,7 +72,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_layout"
             style="@style/Widget.TextInput"
-            text_input_error="@{vm.signInIdError}"
+            text_input_error="@{authViewModel.signInIdError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"
@@ -79,13 +84,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@={vm.id}" />
+                android:text="@={authViewModel.id}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pw_layout"
             style="@style/Widget.TextInput"
-            text_input_error="@{vm.signInPwError}"
+            text_input_error="@{authViewModel.signInPwError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/side_padding"
@@ -98,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:text="@={vm.pw}" />
+                android:text="@={authViewModel.pw}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -123,23 +128,67 @@
             app:layout_constraintTop_toBottomOf="@id/signIn" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/math_layout"
-            style="@style/Widget.TextInput"
-            text_input_error="@{vm.nError}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/math_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/side_padding"
-            android:layout_marginTop="20dp"
-            android:hint="소인수분해 계산기"
-            app:layout_constraintTop_toBottomOf="@id/signUp">
+            android:layout_marginTop="200dp"
+            android:animateLayoutChanges="true"
+            android:invisibility="@{!signInViewModel.isMathOpen}"
+            android:visibility="invisible"
+            app:layout_constraintHeight_min="120dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
-                android:text="@={vm.n}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="12dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/math_layout"
+                    style="@style/Widget.TextInput"
+                    text_input_error="@{signInViewModel.nError}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Try Factorize Integer"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal"
+                        android:text="@={signInViewModel.number}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    text='@{"Answer: " + signInViewModel.answer}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/math_layout"
+                    tools:text="hi" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:invisibility="@{signInViewModel.isMathOpen}"
+            android:id="@+id/math_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="@color/colorOnBackground"
+            android:src="@drawable/ic_calculator_white_24"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@id/theme_fab"
+            app:layout_constraintRight_toLeftOf="@id/theme_fab"
+            app:tint="@color/colorBackground" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/theme_fab"

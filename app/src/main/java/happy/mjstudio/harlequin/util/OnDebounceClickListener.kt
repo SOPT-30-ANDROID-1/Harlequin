@@ -19,7 +19,7 @@ class OnDebounceClickListener(private val listener: OnClickListener) : View.OnCl
     }
 }
 
-infix fun View.setOnDebounceClickListener(listener: OnClickListener) {
+infix fun View.onDebounceClick(listener: OnClickListener) {
     this.setOnClickListener(OnDebounceClickListener {
         it.run(listener)
     })

@@ -49,8 +49,6 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             kotlin.runCatching {
                 authProvider.signIn(SignInArg(id.value, pw.value))
-            }.onSuccess {
-
             }.onFailure {
                 assert(!it.message.isNullOrBlank())
                 when (it) {

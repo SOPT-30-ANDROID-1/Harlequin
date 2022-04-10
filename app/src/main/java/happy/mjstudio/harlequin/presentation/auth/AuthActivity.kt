@@ -12,6 +12,7 @@ import happy.mjstudio.harlequin.presentation.master.MasterActivity
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,8 +35,8 @@ class AuthActivity : AppCompatActivity() {
     lateinit var authProvider: AuthProvider
     private fun observeAuthSuccess() {
         repeatCoroutineWhenStarted {
-            authProvider.isSignIn.collect {
-                if (it) navigateMaster()
+            authProvider.isSignIn.filter { it }.collect {
+                navigateMaster()
             }
         }
     }

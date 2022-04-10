@@ -31,10 +31,9 @@ class SignInViewModel @Inject constructor() : ViewModel() {
                 calculate()
             }
         }
-        "".apply { }
     }
 
-    fun calculate() {
+    private fun calculate() {
         _nError.value = ""
         val ret = number.value.toLongOrNull()
 

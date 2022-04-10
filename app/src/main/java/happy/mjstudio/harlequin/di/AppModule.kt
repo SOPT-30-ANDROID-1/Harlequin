@@ -14,9 +14,6 @@ import happy.mjstudio.harlequin.util.localstorage.LocalStorage
 import happy.mjstudio.harlequin.util.localstorage.SharedPreferencesLocalStorage
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcherAndroid
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -27,13 +24,7 @@ object AppModule {
     fun provideContext(app: Application): Context = app
 
     @Provides
-    @Singleton
-    @Named("application")
-    fun provideApplicationCoroutineScope() = CoroutineScope(SupervisorJob())
-
-    @Provides
     fun provideDisplayMetrics(app: Application): DisplayMetrics = app.resources.displayMetrics
-
 }
 
 @Module

@@ -3,16 +3,19 @@ package happy.mjstudio.harlequin.presentation.auth.signin
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import happy.mjstudio.harlequin.di.DefaultDispatcher
 import happy.mjstudio.harlequin.util.NativeLib
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor() : ViewModel() {
+class SignInViewModel @Inject constructor(@DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher) :
+    ViewModel() {
     private val _isMathOpen = MutableStateFlow(false)
     val isMathOpen: StateFlow<Boolean> = _isMathOpen
     fun toggleMathOpen() {
@@ -26,14 +29,14 @@ class SignInViewModel @Inject constructor() : ViewModel() {
     val answer: StateFlow<String> = _answer
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch {
             number.collect {
                 calculate()
             }
         }
     }
 
-    private fun calculate() {
+    private suspend fun calculate() = withContext(defaultDispatcher) {
         _nError.value = ""
         val ret = number.value.toLongOrNull()
 

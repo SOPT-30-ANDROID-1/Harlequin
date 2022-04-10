@@ -52,9 +52,9 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
         binding.authViewModel = authViewModel
         binding.signInViewModel = signInViewModel
 
+        initMath()
         thisFunctionIsSoTrash()
         initThemeSwitcherBehavior()
-        initMath()
         initAuthBehaviors()
     }
 

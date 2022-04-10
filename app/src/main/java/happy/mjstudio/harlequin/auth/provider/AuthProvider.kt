@@ -10,6 +10,8 @@ interface AuthProvider {
     suspend fun signUp(arg: SignUpArg)
     suspend fun signOut()
 
+    fun loadLatestSignInArg(): SignInArg
+
     data class SignInArg(val id: String, val pw: String)
     data class SignUpArg(val name: String, val id: String, val pw: String)
 

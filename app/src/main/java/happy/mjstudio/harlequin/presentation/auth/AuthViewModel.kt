@@ -20,8 +20,8 @@ class AuthViewModel @Inject constructor(
     private val formValidator: AuthFormValidator,
     private val authProvider: AuthProvider,
 ) : ViewModel() {
-    val id = MutableStateFlow("")
-    val pw = MutableStateFlow("")
+    val id = MutableStateFlow(authProvider.loadLatestSignInArg().id)
+    val pw = MutableStateFlow(authProvider.loadLatestSignInArg().pw)
     val signUpName = MutableStateFlow("")
 
     private val _idError = MutableStateFlow("")

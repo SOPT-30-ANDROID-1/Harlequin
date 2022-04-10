@@ -26,22 +26,39 @@ class AuthProviderImpl @Inject constructor(
 
     override val isSignIn = user.map { it != null }.stateIn(externalScope, SharingStarted.WhileSubscribed(3000), false)
 
+    private val idInStorage
+        get() = storage.loadString("id")
+    private val pwInStorage
+        get() = storage.loadString("pw")
+
     override suspend fun signIn(arg: SignInArg) = withContext(dispatcher) {
-        val storageId = storage.loadString("id") ?: throw UserNotFoundException()
-        val storagePw = storage.loadString("pw") ?: throw Exception("THIS IS TILT!")
+        val storageId = idInStorage ?: throw UserNotFoundException()
+        val storagePw = pwInStorage ?: throw Exception("THIS IS TILT!")
 
         if (arg.id != storageId) throw UserNotFoundException()
         if (arg.pw != storagePw) throw PwNotMatchedException()
 
+        saveLatestSignInArg(arg)
         (storage.loadString("name") ?: throw Exception("THIS IS TILT!")).also { _user.value = it }
     }
 
     override suspend fun signUp(arg: SignUpArg) {
-        storage.saveString("name", arg.name)
-        storage.saveString("id", arg.id)
-        storage.saveString("pw", arg.pw)
+        fun saveToStorage() {
+            storage.saveString("name", arg.name)
+            storage.saveString("id", arg.id)
+            storage.saveString("pw", arg.pw)
+        }
 
+        saveToStorage()
+        saveLatestSignInArg(SignInArg(arg.id, arg.pw))
         _user.value = arg.name
+    }
+
+    override fun loadLatestSignInArg() = SignInArg(idInStorage ?: "", pwInStorage ?: "")
+
+    private fun saveLatestSignInArg(arg: SignInArg) {
+        storage.saveString("id_latest", arg.id)
+        storage.saveString("pw_latest", arg.pw)
     }
 
     override suspend fun signOut() {

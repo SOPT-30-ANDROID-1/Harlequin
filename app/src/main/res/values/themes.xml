@@ -16,6 +16,7 @@
         <!-- Customize your theme here. -->
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/colorOnBackground</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">

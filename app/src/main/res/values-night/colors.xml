@@ -36,7 +36,7 @@
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnError">#FFFFFF</color>
 
-    <color name="colorBackground">#000000</color>
+    <color name="colorBackground">#111111</color>
     <color name="colorSurface">#222222</color>
 
     <color name="colorOnBackground">#EAEAEA</color>

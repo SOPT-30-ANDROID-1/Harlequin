@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.master
+package happy.mjstudio.harlequin.presentation.master.base
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.databinding.ActivityMasterBinding
+import happy.mjstudio.harlequin.di.MasterFragmentFactory
 import happy.mjstudio.harlequin.presentation.auth.AuthActivity
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.presentation.util.ext.showToast
@@ -20,6 +21,7 @@ class MasterActivity : AppCompatActivity() {
     lateinit var authProvider: AuthProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = MasterFragmentFactory(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMasterBinding.inflate(layoutInflater).also { setContentView(it.root) }
 

@@ -6,57 +6,54 @@
 
         <variable
             name="masterViewModel"
-            type="happy.mjstudio.harlequin.presentation.master.MasterViewModel" />
+            type="happy.mjstudio.harlequin.presentation.master.base.MasterViewModel" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutDescription="@xml/scene_master">
+        android:layout_height="match_parent">
 
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/photo"
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motion_container"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/margot1"
-            app:altSrc="@drawable/margot2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:warmth="1" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="이름: 문명주"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/photo" />
+            app:layoutDescription="@xml/scene_master"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="나이: 26"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name" />
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/margot1"
+                app:altSrc="@drawable/margot2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundPercent="50"
+                app:warmth="1" />
 
-        <TextView
-            android:id="@+id/mbti"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="MBTI: INTP"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/age" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="문명주" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1997.04.04" />
+
+            <TextView
+                android:id="@+id/mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INTP" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
 
         <ImageButton
             android:id="@+id/back"
@@ -70,16 +67,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/motion_container" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="false"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_fileName="celebration.json" />
-
-
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

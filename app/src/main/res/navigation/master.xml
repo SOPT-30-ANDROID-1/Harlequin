@@ -5,6 +5,6 @@
     app:startDestination="@id/masterFragment">
     <fragment
         android:id="@+id/masterFragment"
-        android:name="happy.mjstudio.harlequin.presentation.master.MasterFragment"
+        android:name="happy.mjstudio.harlequin.presentation.master.base.MasterFragment"
         android:label="MasterFragment" />
 </navigation>

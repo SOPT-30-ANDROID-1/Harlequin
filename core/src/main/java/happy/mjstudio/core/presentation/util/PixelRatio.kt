@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.util
+package happy.mjstudio.core.presentation.util
 
 import android.util.DisplayMetrics
 import androidx.annotation.Px

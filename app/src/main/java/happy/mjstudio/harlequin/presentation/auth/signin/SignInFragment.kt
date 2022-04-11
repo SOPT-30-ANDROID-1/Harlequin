@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
-import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.presentation.util.ext.getDimen
 import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted

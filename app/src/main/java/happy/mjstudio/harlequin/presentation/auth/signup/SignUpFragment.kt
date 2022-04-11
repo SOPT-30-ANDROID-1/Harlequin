@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignUpBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
-import happy.mjstudio.harlequin.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.util.onDebounceClick
 
 @AndroidEntryPoint

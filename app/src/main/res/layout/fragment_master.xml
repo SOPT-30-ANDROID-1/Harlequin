@@ -76,9 +76,11 @@
             app:layout_constraintTop_toBottomOf="@id/motion_container" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/master_menu" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"

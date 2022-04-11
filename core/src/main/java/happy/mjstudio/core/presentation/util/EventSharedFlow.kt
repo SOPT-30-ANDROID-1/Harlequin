@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.util
+package happy.mjstudio.core.presentation.util
 
 import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.flow.MutableSharedFlow

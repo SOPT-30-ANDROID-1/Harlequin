@@ -6,8 +6,10 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ActivityComponent
+import happy.mjstudio.github.presentation.follow.GithubFollowFragment
+import happy.mjstudio.github.presentation.follower.GithubFollowerFragment
+import happy.mjstudio.github.presentation.repository.GithubRepositoryFragment
 import happy.mjstudio.harlequin.presentation.master.base.MasterFragment
-import happy.mjstudio.harlequin.presentation.master.githubfollow.GithubFollowFragment
 
 class MasterFragmentFactory(activity: Activity) : FragmentFactory() {
 
@@ -21,6 +23,8 @@ class MasterFragmentFactory(activity: Activity) : FragmentFactory() {
         when (loadFragmentClass(classLoader, className)) {
             MasterFragment::class.java -> MasterFragment()
             GithubFollowFragment::class.java -> GithubFollowFragment()
+            GithubFollowerFragment::class.java -> GithubFollowerFragment()
+            GithubRepositoryFragment::class.java -> GithubRepositoryFragment()
             else -> super.instantiate(classLoader, className)
         }
 }

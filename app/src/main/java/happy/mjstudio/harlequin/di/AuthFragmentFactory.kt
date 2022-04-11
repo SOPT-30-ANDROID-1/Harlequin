@@ -8,7 +8,7 @@ import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ActivityComponent
 import happy.mjstudio.harlequin.presentation.auth.signin.SignInFragment
 import happy.mjstudio.harlequin.presentation.auth.signup.SignUpFragment
-import happy.mjstudio.harlequin.presentation.util.PixelRatio
+import happy.mjstudio.core.presentation.util.PixelRatio
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 
 class AuthFragmentFactory(activity: Activity) : FragmentFactory() {

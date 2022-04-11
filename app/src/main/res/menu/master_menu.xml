@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/githubFollowFragment"
+        android:icon="@drawable/ic_smile_plus_white_24"
+        android:title="Follow" />
+    <item
+        android:id="@+id/githubFollowerFragment"
+        android:icon="@drawable/ic_smile_white_24"
+        android:title="Follower" />
+    <item
+        android:id="@+id/githubRepoFragment"
+        android:icon="@drawable/ic_book_white_24"
+        android:title="Repository" />
+</menu>

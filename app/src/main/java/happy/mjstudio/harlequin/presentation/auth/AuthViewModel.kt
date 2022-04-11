@@ -9,7 +9,7 @@ import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignInArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignUpArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.UserNotFoundException
 import happy.mjstudio.harlequin.auth.validator.AuthFormValidator
-import happy.mjstudio.harlequin.presentation.util.EventSharedFlow
+import happy.mjstudio.core.presentation.util.EventSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

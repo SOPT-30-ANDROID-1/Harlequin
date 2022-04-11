@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="happy.mjstudio.harlequin.presentation.master.githubfollow.GithubFollowViewModel" />
+            type="happy.mjstudio.github.presentation.repository.GithubRepositoryViewModel" />
 
     </data>
 

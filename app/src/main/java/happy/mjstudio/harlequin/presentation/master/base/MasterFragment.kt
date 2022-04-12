@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import dagger.hilt.android.AndroidEntryPoint
+import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentMasterBinding
-import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import kotlinx.coroutines.flow.collect
 
@@ -37,7 +37,7 @@ class MasterFragment : Fragment() {
     private fun initPager() {
         binding.pager.run {
             offscreenPageLimit = 4
-            adapter = MasterPagerAdapter(this@MasterFragment)
+            adapter = MasterPagerAdapter(requireActivity().supportFragmentManager.fragmentFactory, this@MasterFragment)
             registerOnPageChangeCallback(object : OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     viewModel.onPagerIndexChanged(position)
@@ -58,7 +58,7 @@ class MasterFragment : Fragment() {
 
         repeatCoroutineWhenStarted {
             viewModel.pagerIndex.collect {
-                if (binding.pager.currentItem != it) binding.pager.currentItem = it
+                binding.pager.currentItem = it
             }
         }
     }

@@ -22,6 +22,7 @@ import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
@@ -29,7 +30,6 @@ import happy.mjstudio.harlequin.presentation.util.ext.getDimen
 import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.presentation.util.ext.showToast
-import happy.mjstudio.harlequin.util.onDebounceClick
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.drop

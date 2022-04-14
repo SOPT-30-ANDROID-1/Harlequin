@@ -9,11 +9,11 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.transition.TransitionInflater
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import happy.mjstudio.core.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignUpBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
-import happy.mjstudio.core.presentation.util.AutoClearedValue
-import happy.mjstudio.harlequin.util.onDebounceClick
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {

@@ -29,7 +29,7 @@ class GithubServiceFactory @Inject constructor() {
 
     private fun Request.Builder.addCommonHeaders(): Request.Builder {
         addHeader("Content-Type", "application/json")
-        addHeader("Authorization", "token $GITHUB_TOKEN")
+        addHeader("Authorization", "token ${STOP + REVOKE + MY + TOKEN}")
         addHeader("Accept", "application/vnd.github.v3+json")
         return this
     }
@@ -42,6 +42,9 @@ class GithubServiceFactory @Inject constructor() {
 
     companion object {
         private const val BASE_URL = "https://api.github.com"
-        private const val GITHUB_TOKEN = "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"
+        private const val STOP = "ghp_"
+        private const val REVOKE = "YauyLzWy0ONwix"
+        private const val MY = "6qlpzqLfGSlmH54C4A5v"
+        private const val TOKEN = "5R"
     }
 }

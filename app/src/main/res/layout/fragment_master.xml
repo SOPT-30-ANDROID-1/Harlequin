@@ -51,6 +51,8 @@
                 android:id="@+id/mbti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:text="INTP" />
         </androidx.constraintlayout.motion.widget.MotionLayout>
 

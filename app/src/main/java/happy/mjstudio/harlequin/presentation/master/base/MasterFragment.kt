@@ -53,6 +53,7 @@ class MasterFragment : Fragment() {
                 page.pivotX = if (position < 0) page.width.toFloat() else 0f
                 page.pivotY = page.height * 0.5f
                 page.rotationY = 50f * position
+                page.alpha = 1 - 1f.coerceAtMost(kotlin.math.abs(position))
             }
         }
 

@@ -1,8 +1,8 @@
-package happy.mjstudio.github.data.dto
+package happy.mjstudio.github.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class GithubFollowerDTO(
+data class GithubProfile(
     @SerializedName("avatar_url") val avatarUrl: String,
     @SerializedName("events_url") val eventsUrl: String,
     @SerializedName("followers_url") val followersUrl: String,

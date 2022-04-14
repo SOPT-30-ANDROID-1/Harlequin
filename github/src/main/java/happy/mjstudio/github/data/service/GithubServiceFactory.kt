@@ -42,6 +42,6 @@ class GithubServiceFactory @Inject constructor() {
 
     companion object {
         private const val BASE_URL = "https://api.github.com"
-        private const val GITHUB_TOKEN = "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"
+        private const val GITHUB_TOKEN = "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"
     }
 }

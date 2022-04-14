@@ -21,10 +21,10 @@ import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
+import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
-import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.presentation.util.ext.getDimen
 import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
 import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
@@ -110,7 +110,7 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
 
     private fun thisFunctionIsSoTrash() {
         binding.logoContainer.updatePaddingRelative(
-            getDimen(R.dimen.side_padding), 0, getDimen(R.dimen.side_padding), 0
+            getDimen(happy.mjstudio.core.R.dimen.side_padding), 0, getDimen(happy.mjstudio.core.R.dimen.side_padding), 0
         )
 
         fun createTextView(text: String, index: Int) = TextView(context).also { tv ->

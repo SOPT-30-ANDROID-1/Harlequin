@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.util
+package happy.mjstudio.core.presentation.util
 
 import android.util.Log
 

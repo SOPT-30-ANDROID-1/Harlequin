@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentMasterBinding
-import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
+import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -37,6 +37,7 @@ class MasterFragment : Fragment() {
     private fun initPager() {
         binding.pager.run {
             offscreenPageLimit = 4
+            isUserInputEnabled = false
             adapter = MasterPagerAdapter(requireActivity().supportFragmentManager.fragmentFactory, this@MasterFragment)
             registerOnPageChangeCallback(object : OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {

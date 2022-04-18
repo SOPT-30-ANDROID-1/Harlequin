@@ -6,9 +6,9 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 import happy.mjstudio.harlequin.presentation.auth.signin.SignInFragment
 import happy.mjstudio.harlequin.presentation.auth.signup.SignUpFragment
-import happy.mjstudio.core.presentation.util.PixelRatio
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 
 class AuthFragmentFactory(activity: Activity) : FragmentFactory() {
@@ -16,7 +16,7 @@ class AuthFragmentFactory(activity: Activity) : FragmentFactory() {
     @EntryPoint
     @InstallIn(ActivityComponent::class)
     interface Injector {
-        fun pixelRatio(): PixelRatio
+        @ActivityScoped
         fun themeSwitcher(): ThemeSwitcher
     }
 

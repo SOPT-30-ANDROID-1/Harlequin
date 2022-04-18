@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.PixelRatio
+import happy.mjstudio.core.presentation.util.itemtouchhelper.ItemTouchHelperAdapter
 import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.github.databinding.FragmentGithubFollowBinding
 import happy.mjstudio.github.presentation.adapter.GithubProfileAdapter
 
 @AndroidEntryPoint
-class GithubFollowFragment : Fragment() {
+class GithubFollowFragment(private val pixelRatio: PixelRatio) : Fragment() {
     private var binding: FragmentGithubFollowBinding by AutoClearedValue()
     private val viewModel by viewModels<GithubFollowViewModel>()
 
@@ -34,8 +36,18 @@ class GithubFollowFragment : Fragment() {
 
     private fun initList() {
         binding.list.run {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = GithubProfileAdapter()
+            adapter = GithubProfileAdapter(
+                viewModel.followings,
+                viewModel.listMenuOpenState,
+                viewLifecycleOwner.lifecycle,
+                pixelRatio,
+                viewModel::onItemMoved,
+                viewModel::onItemRemoved,
+                viewModel::onItemMenuOpened,
+                viewModel::onItemMenuClosed,
+            ).also {
+                ItemTouchHelperAdapter(it).attachToRecyclerView(this)
+            }
         }
         binding.fab onDebounceClick {
             changeListLayoutManager()

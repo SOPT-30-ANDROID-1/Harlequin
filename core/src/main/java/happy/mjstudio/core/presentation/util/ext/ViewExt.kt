@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.util.ext
+package happy.mjstudio.core.presentation.util.ext
 
 import android.view.View
 import androidx.core.view.isInvisible

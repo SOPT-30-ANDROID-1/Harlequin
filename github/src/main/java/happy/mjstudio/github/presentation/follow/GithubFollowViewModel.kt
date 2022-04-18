@@ -15,18 +15,47 @@ import javax.inject.Inject
 class GithubFollowViewModel @Inject constructor(service: GithubService) : ViewModel() {
     private val _followings = MutableStateFlow<List<GithubProfile>>(listOf())
     val followings: StateFlow<List<GithubProfile>> = _followings
-
-    private val _loading = MutableStateFlow(true)
-    val loading: StateFlow<Boolean> = _loading
+    private val _listMenuOpenState = MutableStateFlow<List<Boolean>>(listOf())
+    val listMenuOpenState: StateFlow<List<Boolean>> = _listMenuOpenState
 
     init {
         viewModelScope.launch {
             kotlin.runCatching {
-                _followings.value = service.listFollowing()
+                service.listFollowing()
+            }.onSuccess {
+                _followings.value = it
+                _listMenuOpenState.value = it.map { false }
             }.onFailure {
                 debug(it) // todo zz
             }
-            _loading.value = false
+        }
+    }
+
+    fun onItemMoved(from: Int, to: Int) {
+        if (from == to) return
+        _followings.value = followings.value.let { list ->
+            list.toMutableList().apply { removeAt(from);add(to, list[from]) }
+        }
+    }
+
+    fun onItemRemoved(index: Int) {
+        _followings.value = followings.value.let { list ->
+            list.toMutableList().apply { removeAt(index) }
+        }
+        _listMenuOpenState.value = listMenuOpenState.value.let { list ->
+            list.toMutableList().apply { removeAt(index) }
+        }
+    }
+
+    fun onItemMenuOpened(index: Int) {
+        _listMenuOpenState.value = listMenuOpenState.value.let { list ->
+            list.toMutableList().apply { this[index] = true }
+        }
+    }
+
+    fun onItemMenuClosed(index: Int) {
+        _listMenuOpenState.value = listMenuOpenState.value.let { list ->
+            list.toMutableList().apply { this[index] = false }
         }
     }
 }

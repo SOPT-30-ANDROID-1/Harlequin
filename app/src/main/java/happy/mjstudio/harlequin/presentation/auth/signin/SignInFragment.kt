@@ -26,10 +26,10 @@ import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
 import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
-import happy.mjstudio.harlequin.presentation.util.ext.getDimen
-import happy.mjstudio.harlequin.presentation.util.ext.hideKeyboard
-import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
-import happy.mjstudio.harlequin.presentation.util.ext.showToast
+import happy.mjstudio.core.presentation.util.ext.getDimen
+import happy.mjstudio.core.presentation.util.ext.hideKeyboard
+import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
+import happy.mjstudio.core.presentation.util.ext.showToast
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.drop

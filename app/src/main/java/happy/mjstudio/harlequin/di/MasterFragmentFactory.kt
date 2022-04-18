@@ -6,6 +6,8 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
+import happy.mjstudio.core.presentation.util.PixelRatio
 import happy.mjstudio.github.presentation.follow.GithubFollowFragment
 import happy.mjstudio.github.presentation.follower.GithubFollowerFragment
 import happy.mjstudio.github.presentation.repository.GithubRepositoryFragment
@@ -15,15 +17,18 @@ class MasterFragmentFactory(activity: Activity) : FragmentFactory() {
 
     @EntryPoint
     @InstallIn(ActivityComponent::class)
-    interface Injector {}
+    interface Injector {
+        @ActivityScoped
+        fun pixelRatio(): PixelRatio
+    }
 
     private val entryPoint = EntryPointAccessors.fromActivity(activity, Injector::class.java)
 
     override fun instantiate(classLoader: ClassLoader, className: String) =
         when (loadFragmentClass(classLoader, className)) {
             MasterFragment::class.java -> MasterFragment()
-            GithubFollowFragment::class.java -> GithubFollowFragment()
-            GithubFollowerFragment::class.java -> GithubFollowerFragment()
+            GithubFollowFragment::class.java -> GithubFollowFragment(entryPoint.pixelRatio())
+            GithubFollowerFragment::class.java -> GithubFollowerFragment(entryPoint.pixelRatio())
             GithubRepositoryFragment::class.java -> GithubRepositoryFragment()
             else -> super.instantiate(classLoader, className)
         }

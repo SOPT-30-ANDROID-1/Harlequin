@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.github.databinding.FragmentGithubRepositoryBinding
+import happy.mjstudio.github.presentation.adapter.GithubRepoAdapter
 
 @AndroidEntryPoint
 class GithubRepositoryFragment : Fragment() {
@@ -24,5 +25,13 @@ class GithubRepositoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
+
+        initList()
+    }
+
+    private fun initList() {
+        binding.list.run {
+            adapter = GithubRepoAdapter()
+        }
     }
 }

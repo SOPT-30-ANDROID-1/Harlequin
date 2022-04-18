@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.util.ext
+package happy.mjstudio.core.presentation.util.ext
 
 import android.app.Activity
 import android.content.Context

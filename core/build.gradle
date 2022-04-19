@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'org.jetbrains.kotlin.kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -43,8 +44,8 @@ dependencies {
     api 'androidx.core:core-splashscreen:1.0.0-beta02'
 
     api 'androidx.hilt:hilt-navigation-fragment:1.0.0'
-    api "androidx.navigation:navigation-fragment-ktx:2.4.2"
-    api "androidx.navigation:navigation-ui-ktx:2.4.2"
+    api "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    api "androidx.navigation:navigation-ui-ktx:$navVersion"
 
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     api "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"

@@ -1,7 +1,10 @@
 package happy.mjstudio.github.data.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class GithubProfile(
     @SerializedName("avatar_url") val avatarUrl: String,
     @SerializedName("events_url") val eventsUrl: String,
@@ -21,4 +24,4 @@ data class GithubProfile(
     @SerializedName("subscriptions_url") val subscriptionsUrl: String,
     @SerializedName("type") val type: String,
     @SerializedName("url") val url: String
-)
+) : Parcelable

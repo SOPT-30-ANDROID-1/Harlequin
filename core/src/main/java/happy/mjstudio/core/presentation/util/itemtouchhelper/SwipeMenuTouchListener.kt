@@ -25,6 +25,10 @@ class SwipeMenuTouchListener(
                     callback.onContentXAnimated(0f)
                     callback.onMenuClosed()
                 }
+
+                if (e.actionMasked == MotionEvent.ACTION_UP) {
+                    callback.onMenuClicked()
+                }
             }
         }
 
@@ -36,5 +40,6 @@ class SwipeMenuTouchListener(
         fun onContentXAnimated(x: Float)
         fun onMenuOpened()
         fun onMenuClosed()
+        fun onMenuClicked()
     }
 }

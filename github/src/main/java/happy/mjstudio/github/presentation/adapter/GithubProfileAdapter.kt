@@ -1,7 +1,9 @@
 package happy.mjstudio.github.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -9,7 +11,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import happy.mjstudio.core.presentation.util.PixelRatio
-import happy.mjstudio.core.presentation.util.debug
 import happy.mjstudio.core.presentation.util.itemtouchhelper.MoveableAdapter
 import happy.mjstudio.core.presentation.util.itemtouchhelper.SwipeMenuTouchListener
 import happy.mjstudio.core.presentation.util.itemtouchhelper.SwipeMenuTouchListener.Callback
@@ -29,6 +30,7 @@ class GithubProfileAdapter(
     private val onItemRemoved: (Int) -> Unit,
     private val onItemMenuOpened: (Int) -> Unit,
     private val onItemMenuClosed: (Int) -> Unit,
+    private val onItemClicked: (GithubProfile, View) -> Unit,
 ) : RecyclerView.Adapter<GithubProfileAdapter.GithubFollowerHolder>(), MoveableAdapter {
     private val diff = object : DiffUtil.ItemCallback<GithubProfile>() {
         override fun areItemsTheSame(oldItem: GithubProfile, newItem: GithubProfile): Boolean {
@@ -95,6 +97,10 @@ class GithubProfileAdapter(
                 override fun onMenuClosed() {
                     onItemMenuClosed(layoutPosition)
                 }
+
+                override fun onMenuClicked() {
+                    onItemClicked(differ.currentList[adapterPosition], binding.thumbnail)
+                }
             })
         )
 
@@ -111,6 +117,7 @@ class GithubProfileAdapter(
         fun bind(item: GithubProfile, isMenuOpen: Boolean) {
             transX = if (isMenuOpen) -menuWidth else 0f
 
+            ViewCompat.setTransitionName(binding.thumbnail, item.login)
             binding.item = item
             binding.executePendingBindings()
         }

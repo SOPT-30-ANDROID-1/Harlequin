@@ -6,12 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.core.presentation.util.PixelRatio
 import happy.mjstudio.core.presentation.util.itemtouchhelper.ItemTouchHelperAdapter
+import happy.mjstudio.github.data.entity.GithubProfile
 import happy.mjstudio.github.databinding.FragmentGithubFollowerBinding
+import happy.mjstudio.github.di.GithubNavigationActionProvider
 import happy.mjstudio.github.presentation.adapter.GithubProfileAdapter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GithubFollowerFragment(private val pixelRatio: PixelRatio) : Fragment() {
@@ -42,9 +47,21 @@ class GithubFollowerFragment(private val pixelRatio: PixelRatio) : Fragment() {
                 viewModel::onItemRemoved,
                 viewModel::onItemMenuOpened,
                 viewModel::onItemMenuClosed,
+                ::navigateDetail,
             ).also {
                 ItemTouchHelperAdapter(it).attachToRecyclerView(this)
             }
         }
+    }
+
+    @Inject
+    lateinit var navigationActionProvider: GithubNavigationActionProvider
+
+    private fun navigateDetail(profile: GithubProfile, view: View) {
+        findNavController().navigate(
+            navigationActionProvider.detailAction(profile), FragmentNavigatorExtras(
+                view to "thumbnail"
+            )
+        )
     }
 }

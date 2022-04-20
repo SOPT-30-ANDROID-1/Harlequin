@@ -5,6 +5,7 @@ import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignInArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignUpArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.UserNotFoundException
 import happy.mjstudio.harlequin.di.DefaultDispatcher
+import happy.mjstudio.harlequin.presentation.master.base.MasterFragmentDirections
 import happy.mjstudio.harlequin.util.localstorage.LocalStorage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

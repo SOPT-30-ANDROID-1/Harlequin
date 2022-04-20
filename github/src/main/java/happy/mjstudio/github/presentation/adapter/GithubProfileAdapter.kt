@@ -52,6 +52,7 @@ class GithubProfileAdapter(
                 }
             }
         }
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubFollowerHolder {

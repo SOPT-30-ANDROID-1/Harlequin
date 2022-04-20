@@ -33,7 +33,5 @@ class GithubDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
-
-        //        ViewCompat.setTransitionName(binding.thumbnail, (requireArguments().get("profile") as? GithubProfile)?.login)
     }
 }

@@ -3,7 +3,6 @@ package happy.mjstudio.core.presentation.util.itemtouchhelper
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import happy.mjstudio.core.presentation.util.debug
 import kotlin.math.abs
 
 class SwipeMenuTouchListener(

@@ -8,7 +8,7 @@
 
 ## RecyclerView
 
-<img src="https://user-images.githubusercontent.com/33388801/164178969-71919141-3fed-45d3-b3f9-9a84e1491899.gif" width=300/>
+<img src="https://user-images.githubusercontent.com/33388801/164182464-0f5d969b-bfeb-492c-9145-ad3500948c92.gif" width=300/>
 
 1. `RecyclerView` 를 사용하여 리스트를 구현했습니다.
 
@@ -81,6 +81,42 @@ class SwipeMenuTouchListener(
 
 2. `MotionLayout`과 `ImageFilterView` `ViewPager2`를 이용하여 페이저의 페이지가 변할 때 사진이 변한다든지 텍스트의 위치가 변한다든지 하는 효과를 줬습니다.
 
+## 도전 과제
+
+### 3-1
+
+Lifecycle observer와 Kotlin property delegation을 이용해 lifecycle에 바인딩 객체를 binding시켜 뷰가 파괴되는 생명주기에서 참조를 직접적으로 끊어줄 필요가 없습니다. 
+
+`AutoClearedValue.kt`
+```kotlin
+class AutoClearedValue<T : Any> : ReadWriteProperty<Fragment, T>, DefaultLifecycleObserver {
+    private var _value: T? = null
+
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
+        _value ?: throw IllegalStateException("Trying to call an auto-cleared value outside of the view lifecycle.")
+
+    override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
+        thisRef.viewLifecycleOwner.lifecycle.removeObserver(this)
+        _value = value
+        thisRef.viewLifecycleOwner.lifecycle.addObserver(this)
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        _value = null
+    }
+}
+```
+
+`XXXFragment.kt`
+```kotlin
+@AndroidEntryPoint
+class GithubDetailFragment : Fragment() {
+    private var binding: FragmentGithubDetailBinding by AutoClearedValue()
+```
+
+### 3-2
+notifyDataSetChanged는 계속 모든 아이템을 새롭게 렌더링시킨다는 문제점이 있습니다.
+AsyncListDiffer나 이를 래핑한 ListAdapter를 이용해 데이터의 변화만을 빠르게 계산해 UI에 반영해주는 유틸리티들을 사용해 개선할 수 있습니다.
 
 
 

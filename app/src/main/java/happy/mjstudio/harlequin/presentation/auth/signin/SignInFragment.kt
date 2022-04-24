@@ -22,14 +22,14 @@ import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
-import happy.mjstudio.core.presentation.util.onDebounceClick
-import happy.mjstudio.harlequin.R
-import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
-import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.core.presentation.util.ext.getDimen
 import happy.mjstudio.core.presentation.util.ext.hideKeyboard
 import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.core.presentation.util.ext.showToast
+import happy.mjstudio.core.presentation.util.onDebounceClick
+import happy.mjstudio.harlequin.R
+import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
+import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.drop
@@ -103,12 +103,15 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
         }
     }
 
+    private val animators = mutableListOf<ValueAnimator>()
     override fun onDestroyView() {
         super.onDestroyView()
         backPressedCallback.remove()
+        animators.forEach { it.cancel() }
     }
 
     private fun thisFunctionIsSoTrash() {
+        animators.forEach { it.cancel() }
         binding.logoContainer.updatePaddingRelative(
             getDimen(happy.mjstudio.core.R.dimen.side_padding), 0, getDimen(happy.mjstudio.core.R.dimen.side_padding), 0
         )
@@ -122,7 +125,7 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
                 id = ViewCompat.generateViewId()
                 alpha = 0f
             }
-            ValueAnimator.ofFloat(1f, .5f).apply {
+            val animator = ValueAnimator.ofFloat(1f, .5f).apply {
                 addUpdateListener {
                     val value = it.animatedValue as Float
                     tv.scaleX = value
@@ -134,6 +137,7 @@ class SignInFragment(private val themeSwitcher: ThemeSwitcher) : Fragment() {
                 startDelay = index * 60L
                 start()
             }
+            animators.add(animator)
             ObjectAnimator.ofFloat(tv, "alpha", 0f, 1f).apply {
                 duration = 600
                 startDelay = index * 60L

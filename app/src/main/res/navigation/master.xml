@@ -5,6 +5,18 @@
     app:startDestination="@id/masterFragment">
     <fragment
         android:id="@+id/masterFragment"
-        android:name="happy.mjstudio.harlequin.presentation.master.MasterFragment"
-        android:label="MasterFragment" />
+        android:name="happy.mjstudio.harlequin.presentation.master.base.MasterFragment"
+        android:label="MasterFragment" >
+        <action
+            android:id="@+id/action_masterFragment_to_githubDetailFragment"
+            app:destination="@id/githubDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/githubDetailFragment"
+        android:name="happy.mjstudio.github.presentation.detail.GithubDetailFragment"
+        android:label="GithubDetailFragment" >
+        <argument
+            android:name="profile"
+            app:argType="happy.mjstudio.github.data.entity.GithubProfile" />
+    </fragment>
 </navigation>

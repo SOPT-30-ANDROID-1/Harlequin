@@ -8,8 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.databinding.ActivityAuthBinding
 import happy.mjstudio.harlequin.di.AuthFragmentFactory
-import happy.mjstudio.harlequin.presentation.master.MasterActivity
-import happy.mjstudio.harlequin.presentation.util.ext.repeatCoroutineWhenStarted
+import happy.mjstudio.harlequin.presentation.master.base.MasterActivity
+import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter

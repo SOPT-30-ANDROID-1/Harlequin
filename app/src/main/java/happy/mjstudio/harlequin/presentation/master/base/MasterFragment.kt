@@ -10,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
+import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentMasterBinding
-import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -72,17 +72,17 @@ class MasterFragment : Fragment() {
 
         // holy.. I need a polymorphism
         fun indexWithId(@IdRes id: Int) = when (id) {
-            R.id.githubFollowFragment -> 0
-            R.id.githubFollowerFragment -> 1
-            R.id.githubRepoFragment -> 2
+            R.id.profileFragment -> 0
+            R.id.homeFragment -> 1
+            R.id.cameraFragment -> 2
             else -> throwUnknownTabException()
         }
 
         @IdRes
         fun idWithIndex(index: Int) = when (index) {
-            0 -> R.id.githubFollowFragment
-            1 -> R.id.githubFollowerFragment
-            2 -> R.id.githubRepoFragment
+            0 -> R.id.profileFragment
+            1 -> R.id.homeFragment
+            2 -> R.id.cameraFragment
             else -> throwUnknownTabException()
         }
 

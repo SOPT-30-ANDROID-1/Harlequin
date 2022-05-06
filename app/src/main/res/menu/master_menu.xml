@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/githubFollowFragment"
-        android:icon="@drawable/ic_smile_plus_white_24"
-        android:title="Follow" />
-    <item
-        android:id="@+id/githubFollowerFragment"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_smile_white_24"
-        android:title="Follower" />
+        android:title="Profile" />
     <item
-        android:id="@+id/githubRepoFragment"
-        android:icon="@drawable/ic_book_white_24"
-        android:title="Repository" />
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_white_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/cameraFragment"
+        android:icon="@drawable/ic_camera_white_24"
+        android:title="Camera" />
 </menu>

@@ -10,8 +10,11 @@ import dagger.hilt.android.scopes.ActivityScoped
 import happy.mjstudio.core.presentation.util.PixelRatio
 import happy.mjstudio.github.presentation.follow.GithubFollowFragment
 import happy.mjstudio.github.presentation.follower.GithubFollowerFragment
+import happy.mjstudio.github.presentation.home.HomeFragment
 import happy.mjstudio.github.presentation.repository.GithubRepositoryFragment
+import happy.mjstudio.harlequin.presentation.camera.CameraFragment
 import happy.mjstudio.harlequin.presentation.master.base.MasterFragment
+import happy.mjstudio.harlequin.presentation.profile.ProfileFragment
 
 class MasterFragmentFactory(activity: Activity) : FragmentFactory() {
 
@@ -27,6 +30,9 @@ class MasterFragmentFactory(activity: Activity) : FragmentFactory() {
     override fun instantiate(classLoader: ClassLoader, className: String) =
         when (loadFragmentClass(classLoader, className)) {
             MasterFragment::class.java -> MasterFragment()
+            ProfileFragment::class.java -> ProfileFragment()
+            HomeFragment::class.java -> HomeFragment()
+            CameraFragment::class.java -> CameraFragment()
             GithubFollowFragment::class.java -> GithubFollowFragment(entryPoint.pixelRatio())
             GithubFollowerFragment::class.java -> GithubFollowerFragment(entryPoint.pixelRatio())
             GithubRepositoryFragment::class.java -> GithubRepositoryFragment()

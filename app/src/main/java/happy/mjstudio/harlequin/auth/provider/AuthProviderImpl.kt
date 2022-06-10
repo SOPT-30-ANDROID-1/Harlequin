@@ -5,7 +5,6 @@ import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignInArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignUpArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.UserNotFoundException
 import happy.mjstudio.harlequin.di.DefaultDispatcher
-import happy.mjstudio.harlequin.presentation.master.base.MasterFragmentDirections
 import happy.mjstudio.harlequin.util.localstorage.LocalStorage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -26,6 +25,13 @@ class AuthProviderImpl @Inject constructor(
     override val user: StateFlow<String?> = _user
 
     override val isSignIn = user.map { it != null }.stateIn(externalScope, SharingStarted.WhileSubscribed(3000), false)
+
+    override val useAutoSignIn = MutableStateFlow(storage.loadBoolean("autoSignIn"))
+    override fun toggleAutoSignIn() {
+        val target = !useAutoSignIn.value
+        storage.saveBoolean("autoSignIn", target)
+        useAutoSignIn.value = target
+    }
 
     private val idInStorage
         get() = storage.loadString("id")

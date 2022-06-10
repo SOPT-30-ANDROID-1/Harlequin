@@ -74,7 +74,21 @@
             android:onClick="@{() -> masterViewModel.signOut()}"
             android:src="@drawable/ic_back_white_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorOnBackground" />
+
+        <ImageButton
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:background="@null"
+            android:src="@drawable/ic_gear_white_24"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back"
+
+            app:tint="@color/colorOnBackground" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomTab"

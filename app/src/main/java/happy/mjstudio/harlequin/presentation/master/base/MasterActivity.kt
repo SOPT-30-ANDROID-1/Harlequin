@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.databinding.ActivityMasterBinding
 import happy.mjstudio.harlequin.di.MasterFragmentFactory
-import happy.mjstudio.harlequin.presentation.auth.AuthActivity
+import happy.mjstudio.harlequin.auth.presentation.AuthActivity
 import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
 import happy.mjstudio.core.presentation.util.ext.showToast
 import kotlinx.coroutines.flow.collect

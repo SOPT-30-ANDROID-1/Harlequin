@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.auth
+package happy.mjstudio.harlequin.auth.presentation
 
 import android.content.Intent
 import android.os.Bundle

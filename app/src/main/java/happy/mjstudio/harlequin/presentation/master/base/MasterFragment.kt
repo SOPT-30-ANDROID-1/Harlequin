@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import dagger.hilt.android.AndroidEntryPoint
 import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.core.presentation.util.ext.repeatCoroutineWhenStarted
+import happy.mjstudio.core.presentation.util.setOnDebounceClickListener
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentMasterBinding
 import kotlinx.coroutines.flow.collect
@@ -32,6 +34,8 @@ class MasterFragment : Fragment() {
 
         initPager()
         initBottomTab()
+        setOnSettingButtonClickListener()
+
     }
 
     private fun initPager() {
@@ -96,5 +100,9 @@ class MasterFragment : Fragment() {
                 this@run.selectedItemId = idWithIndex(it)
             }
         }
+    }
+
+    private fun setOnSettingButtonClickListener() = binding.setting setOnDebounceClickListener {
+        findNavController().navigate(R.id.action_masterFragment_to_settingFragment)
     }
 }

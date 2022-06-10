@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_auth"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/onboardingFragment">
 
     <fragment
         android:id="@+id/signInFragment"
         android:name="happy.mjstudio.harlequin.presentation.auth.signin.SignInFragment"
-        android:label="SignInFragment" >
+        android:label="SignInFragment">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -16,4 +16,12 @@
         android:id="@+id/signUpFragment"
         android:name="happy.mjstudio.harlequin.presentation.auth.signup.SignUpFragment"
         android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="happy.mjstudio.harlequin.presentation.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment">
+        <action
+            android:id="@+id/action_onboardingFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
 </navigation>

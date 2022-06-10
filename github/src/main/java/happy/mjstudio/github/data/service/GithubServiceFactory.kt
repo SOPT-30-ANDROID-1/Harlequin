@@ -1,6 +1,7 @@
 package happy.mjstudio.github.data.service
 
 import com.google.gson.GsonBuilder
+import happy.mjstudio.core.data.api.base.MyCallAdapterFactory
 import happy.mjstudio.core.presentation.util.FlipperUtil
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -35,8 +36,8 @@ class GithubServiceFactory @Inject constructor() {
     }
 
     private val apiRetrofit =
-        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson)).client(okHttpClient)
-            .build()
+        Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(MyCallAdapterFactory()).client(okHttpClient).build()
 
     fun <T : Any> createService(clazz: KClass<T>): T = apiRetrofit.create(clazz.java)
 

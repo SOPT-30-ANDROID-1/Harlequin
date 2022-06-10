@@ -3,6 +3,8 @@ package happy.mjstudio.github.presentation.follower
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import happy.mjstudio.core.data.api.base.NetworkResponse.Success
+import happy.mjstudio.core.data.api.base.NetworkResponse.UnHandledError
 import happy.mjstudio.core.presentation.util.debug
 import happy.mjstudio.github.data.entity.GithubProfile
 import happy.mjstudio.github.data.service.GithubService
@@ -20,13 +22,13 @@ class GithubFollowerViewModel @Inject constructor(service: GithubService) : View
 
     init {
         viewModelScope.launch {
-            kotlin.runCatching {
-                service.listFollowers()
-            }.onSuccess {
-                _followers.value = it
-                _listMenuOpenState.value = it.map { false }
-            }.onFailure {
-                debug(it) // todo zz
+            when (val ret = service.listFollowers()) {
+                is Success -> {
+                    _followers.value = ret.data
+                    _listMenuOpenState.value = ret.data.map { false }
+                }
+                is UnHandledError -> debug(ret)
+                else -> debug(ret)
             }
         }
     }

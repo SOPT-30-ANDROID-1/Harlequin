@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.auth.signin
+package happy.mjstudio.harlequin.auth.presentation.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

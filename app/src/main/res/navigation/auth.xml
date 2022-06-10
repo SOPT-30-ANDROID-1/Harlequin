@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="happy.mjstudio.harlequin.presentation.auth.signin.SignInFragment"
+        android:name="happy.mjstudio.harlequin.auth.presentation.signin.SignInFragment"
         android:label="SignInFragment">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="happy.mjstudio.harlequin.presentation.auth.signup.SignUpFragment"
+        android:name="happy.mjstudio.harlequin.auth.presentation.signup.SignUpFragment"
         android:label="SignUpFragment" />
     <fragment
         android:id="@+id/onboardingFragment"

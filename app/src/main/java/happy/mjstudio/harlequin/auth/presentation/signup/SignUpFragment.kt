@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.auth.signup
+package happy.mjstudio.harlequin.auth.presentation.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import happy.mjstudio.core.presentation.util.AutoClearedValue
 import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignUpBinding
-import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
+import happy.mjstudio.harlequin.auth.presentation.AuthViewModel
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {

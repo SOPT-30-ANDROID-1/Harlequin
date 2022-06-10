@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="happy.mjstudio.harlequin.presentation.auth.AuthViewModel" />
+            type="happy.mjstudio.harlequin.auth.presentation.AuthViewModel" />
 
     </data>
 

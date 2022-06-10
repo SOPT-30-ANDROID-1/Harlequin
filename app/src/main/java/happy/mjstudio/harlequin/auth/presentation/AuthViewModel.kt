@@ -1,9 +1,10 @@
-package happy.mjstudio.harlequin.presentation.auth
+package happy.mjstudio.harlequin.auth.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import happy.mjstudio.core.presentation.util.EventSharedFlow
+import happy.mjstudio.harlequin.auth.data.AutoSignInDao
 import happy.mjstudio.harlequin.auth.provider.AuthProvider
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.PwNotMatchedException
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignInArg
@@ -20,8 +21,8 @@ class AuthViewModel @Inject constructor(
     private val formValidator: AuthFormValidator,
     private val authProvider: AuthProvider,
 ) : ViewModel() {
-    val id = MutableStateFlow(authProvider.loadLatestSignInArg().id)
-    val pw = MutableStateFlow(authProvider.loadLatestSignInArg().pw)
+    val id = MutableStateFlow("")
+    val pw = MutableStateFlow("")
     val signUpName = MutableStateFlow("")
 
     private val _idError = MutableStateFlow("")
@@ -34,7 +35,13 @@ class AuthViewModel @Inject constructor(
     val nameError: StateFlow<String> = _nameError
 
     init {
-        if (authProvider.useAutoSignIn.value && id.value.isNotBlank() && pw.value.isNotBlank()) signIn()
+        viewModelScope.launch {
+            authProvider.loadLatestSignInArg().let { arg ->
+                id.value = arg.id
+                pw.value = arg.pw
+                if (authProvider.useAutoSignIn.value && id.value.isNotBlank() && pw.value.isNotBlank()) signIn()
+            }
+        }
     }
 
     fun clearErrors() {

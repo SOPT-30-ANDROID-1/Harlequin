@@ -8,11 +8,11 @@
 
         <variable
             name="authViewModel"
-            type="happy.mjstudio.harlequin.presentation.auth.AuthViewModel" />
+            type="happy.mjstudio.harlequin.auth.presentation.AuthViewModel" />
 
         <variable
             name="signInViewModel"
-            type="happy.mjstudio.harlequin.presentation.auth.signin.SignInViewModel" />
+            type="happy.mjstudio.harlequin.auth.presentation.signin.SignInViewModel" />
 
     </data>
 

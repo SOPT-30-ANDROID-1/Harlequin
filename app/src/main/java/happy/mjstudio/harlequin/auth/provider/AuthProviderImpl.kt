@@ -1,5 +1,7 @@
 package happy.mjstudio.harlequin.auth.provider
 
+import happy.mjstudio.harlequin.auth.data.AutoSignInDTO
+import happy.mjstudio.harlequin.auth.data.AutoSignInDao
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.PwNotMatchedException
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignInArg
 import happy.mjstudio.harlequin.auth.provider.AuthProvider.SignUpArg
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class AuthProviderImpl @Inject constructor(
     externalScope: CoroutineScope,
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
-    private val storage: LocalStorage
+    private val storage: LocalStorage,
+    private val autoSignInDao: AutoSignInDao
 ) : AuthProvider {
     private val _user = MutableStateFlow<String?>(null)
     override val user: StateFlow<String?> = _user
@@ -61,12 +64,14 @@ class AuthProviderImpl @Inject constructor(
         _user.value = arg.name
     }
 
-    override fun loadLatestSignInArg() = SignInArg(idInStorage ?: "", pwInStorage ?: "")
-
-    private fun saveLatestSignInArg(arg: SignInArg) {
-        storage.saveString("id_latest", arg.id)
-        storage.saveString("pw_latest", arg.pw)
+    private suspend fun saveLatestSignInArg(arg: SignInArg) {
+        autoSignInDao.deleteAll()
+        autoSignInDao.insert(AutoSignInDTO(arg.id, arg.pw))
     }
+
+    override suspend fun loadLatestSignInArg() = autoSignInDao.getAll().firstOrNull()?.let {
+        SignInArg(it.id, it.password)
+    } ?: SignInArg("", "")
 
     override suspend fun signOut() {
         _user.value = null

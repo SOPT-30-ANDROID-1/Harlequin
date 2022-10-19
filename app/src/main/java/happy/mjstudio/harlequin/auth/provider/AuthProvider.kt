@@ -6,11 +6,14 @@ interface AuthProvider {
     val user: StateFlow<String?>
     val isSignIn: StateFlow<Boolean>
 
+    val useAutoSignIn: StateFlow<Boolean>
+    fun toggleAutoSignIn()
+
     suspend fun signIn(arg: SignInArg): String?
     suspend fun signUp(arg: SignUpArg)
     suspend fun signOut()
 
-    fun loadLatestSignInArg(): SignInArg
+    suspend fun loadLatestSignInArg(): SignInArg
 
     data class SignInArg(val id: String, val pw: String)
     data class SignUpArg(val name: String, val id: String, val pw: String)

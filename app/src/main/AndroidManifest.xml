@@ -19,7 +19,7 @@
             android:theme="@style/Theme.App"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.auth.AuthActivity"
+            android:name=".auth.presentation.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

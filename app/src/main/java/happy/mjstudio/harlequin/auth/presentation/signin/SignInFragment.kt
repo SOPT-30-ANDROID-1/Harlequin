@@ -1,4 +1,4 @@
-package happy.mjstudio.harlequin.presentation.auth.signin
+package happy.mjstudio.harlequin.auth.presentation.signin
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -29,7 +29,7 @@ import happy.mjstudio.core.presentation.util.ext.showToast
 import happy.mjstudio.core.presentation.util.onDebounceClick
 import happy.mjstudio.harlequin.R
 import happy.mjstudio.harlequin.databinding.FragmentSignInBinding
-import happy.mjstudio.harlequin.presentation.auth.AuthViewModel
+import happy.mjstudio.harlequin.auth.presentation.AuthViewModel
 import happy.mjstudio.harlequin.util.themeswitcher.ThemeSwitcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.drop
